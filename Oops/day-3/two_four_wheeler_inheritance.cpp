@@ -29,7 +29,7 @@ public:
         cin>>max_speed;
         cout<<"Manufacturer Name = "<<manufact<<endl;
         cout<<"Maximum Speed = "<<max_speed<<endl<<endl;
-        Vehicle::showdetails("Bike",28.09);
+        showdetails("Bike",28.09);
     }
 };
 class four_wheeler : public Vehicle
