@@ -47,7 +47,7 @@ public:
         cin>>type;
         cout<<"Colour of the car = "<<colour<<endl;
         cout<<"Type = "<<type<<endl;
-        Vehicle::showdetails("Car",15.09); //user input
+        showdetails("Car",15.09); //user input
     }
 };
 int main()
