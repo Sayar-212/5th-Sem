@@ -16,10 +16,10 @@ public:
     }
     void displayAccounts() const {
         for (int i = 0; i < numAccounts; i++) {
-            cout << "Account Number: " << accountNumbers[i] << ", Balance: $" << balances[i] << endl;
+            cout << "Account Number: " << accountNumbers[i] << ", Balance: Rs." << balances[i] << endl;
         }
     }
-    void transfer_by_Object(Account obj, int from, int to, double amount) {
+    Account transfer_by_Object(Account obj, int from, int to, double amount) {
         int fromIndex = findAccountIndex(obj, from);
         int toIndex = findAccountIndex(obj, to);
         if (fromIndex != -1 && toIndex != -1 && obj.balances[fromIndex] >= amount) {
@@ -29,6 +29,7 @@ public:
         } else {
             cout << "Transfer failed!\n";
         }
+        return obj;  
     }
     void transfer_By_Address(Account* obj, int from, int to, double amount) {
         int fromIndex = findAccountIndex(*obj, from);
@@ -89,7 +90,7 @@ int main() {
         cout << "Enter amount to transfer: ";
         cin >> amount;
         if (i == 0) {
-            account1.transfer_by_Object(account1, from, to, amount);
+            account1 = account1.transfer_by_Object(account1, from, to, amount);
         } else if (i == 1) {
             account1.transfer_By_Address(&account1, from, to, amount);
         } else {
