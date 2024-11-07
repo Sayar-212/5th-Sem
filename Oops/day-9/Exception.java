@@ -1,36 +1,41 @@
-import java.util.*;
-class TooHot extends Exception {
-    public TooHot(String message) {
-        super(message);
+class TooLow extends Exception {
+    private String detail;
+    
+    TooLow(String a) {
+        detail = a;
+    }
+    
+    public String toString() {
+        return "TooLow[" + detail + "]";
     }
 }
-class TooCold extends Exception {
-    public TooCold(String message) {
-        super(message);
-    }
-}
-public class TemperatureChecker {
-    public static void checkTemperature(int temperature) throws TooHot, TooCold {
-        if (temperature > 40) {
-            throw new TooHot("Temperature is too hot!");
-        } else if (temperature < 20) {
-            throw new TooCold("Temperature is too cold!");
-        } else {
-            System.out.println("Temperature is comfortable: " + temperature + " degrees.");
-        }
-    }
-    public static void main(String[] args) {
-        int[] testTemperatures = {15, 25, 45};  
 
-        for (int temp : testTemperatures) {
+class checker {
+    static int counter = 0;
+    
+    void checkInput() throws NullPointerException, TooLow {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter no: ");
+        int x = sc.nextInt();
+        
+        if (x == 0) throw new NullPointerException("not zero");
+        if (x < 10) throw new TooLow("greater than 10 please");
+        
+        counter = 1;
+        System.out.println("That's my favourite number!");
+    }
+    
+    public static void main(String args[]) {
+        checker ch = new checker();
+        
+        do {
             try {
-                System.out.println("Checking temperature: " + temp + " degrees");
-                checkTemperature(temp);
-            } catch (TooHot e) {
-                System.out.println(e.getMessage());
-            } catch (TooCold e) {
-                System.out.println(e.getMessage());
+                ch.checkInput();
+            } catch (NullPointerException e) {
+                System.out.println(e);
+            } catch (TooLow e) {
+                System.out.println("Caught " + e);
             }
-        }
+        } while (checker.counter == 0);
     }
 }
